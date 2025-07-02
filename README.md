@@ -4,9 +4,29 @@
 
 You can watch the video version of this repo on my youtube playlist. -> https://www.youtube.com/watch?v=7JZP345yVjw&list=PLdpzxOOAlwvLjb0vTD9BXLOwwLD_GWCmC
 
-### Table of contents
-- [Container](#what is a container ?)
-- 
+### 📚 Table of Contents
+
+- [What is a container ?](#what-is-a-container-)
+- [Containers vs Virtual Machine](#containers-vs-virtual-machine)
+- [Why are containers lightweight ?](#why-are-containers-light-weight-)
+- [Docker](#docker)
+  - [What is Docker ?](#what-is-docker-)
+  - [Docker Architecture](#docker-architecture-)
+  - [Docker LifeCycle](#docker-lifecycle)
+  - [Docker Terminology](#understanding-the-terminology-inspired-from-docker-docs)
+- [Install Docker](#install-docker)
+  - [Start Docker and Grant Access](#start-docker-and-grant-access)
+  - [Verify Docker Installation](#docker-is-installed-up-and-running-)
+- [Run Your First Container](#run-your-first-docker-container)
+- [Push to Docker Hub](#push-the-image-to-dockerhub-and-share-it-with-the-world)
+- [Interview Questions](#interview-questions)
+  - [1. Base Images](#1-which-base-images-can-we-use-why-not-use-java-base-image-directly)
+  - [2. Reduce Image Size](#2-how-to-decrease-the-image-size)
+  - [3. Multi-Stage Build](#3-what-is-multi-stage-docker-build)
+  - [4. Distroless Images](#4-what-is-a-distroless-image)
+  - [5. Production Issue](#5-one-production-issue-you-faced-with-docker-and-how-you-tackled-it)
+  - [6. Finding Distroless Images](#6-how-to-find-distroless-images)
+
 
 ## What is a container ?
 
