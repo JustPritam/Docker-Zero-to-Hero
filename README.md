@@ -428,6 +428,8 @@ FROM alpine:latest
 COPY --from=builder /app/myapp /myapp
 ENTRYPOINT ["/myapp"]
 ```
+For example you can see in this repo only inside examples -> golang-multi-stage-docker-build
+
 ## 4. What is a distroless image?
 Answer:
 Distroless images do not include a package manager or OS shell, only the application and its runtime libraries.
