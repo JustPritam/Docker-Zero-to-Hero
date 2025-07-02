@@ -360,3 +360,78 @@ latest: digest: sha256:6e49841ad9e720a7baedcd41f9b666fcd7b583151d0763fe78101bb82
 ```
 
 ### You must be feeling like a champ already 
+
+# INTERVIEW QUESTIONS
+
+## 1. Which base images can we use? Why not use java base image directly?
+Answer: 
+We can use any base image depending on our use case, such as:
+
+- alpine: minimal and lightweight
+- ubuntu/debian: standard Linux with full packages
+- distroless: for production security
+- node, python, golang: for language runtimes
+- scratch: for ultra-minimal images (no OS)
+
+We avoid using java base image directly because:
+- It’s large in size (~ hundreds of MB)
+- It often includes unnecessary tools and layers
+- It may not be actively maintained
+- It’s better to use slim versions: openjdk:<version>-slim or openjdk:<version>-alpine
+
+## 2. How to decrease the image size?
+Answer:
+- Use minimal base images like alpine or distroless
+- Use multi-stage builds to exclude build-time dependencies
+- Clean up apt/yum caches after install (rm -rf /var/lib/apt/lists/*)
+- Combine RUN statements using && to reduce image layers
+- Remove unused files/artifacts after building
+- Use .dockerignore to avoid copying unnecessary files
+
+## 3. What is multi-stage Docker build?
+Answer:
+A multi-stage build lets you use multiple FROM instructions in a single Dockerfile. One stage can compile/build the code, and another can be the minimal runtime.
+
+This helps:
+- Keep the final image small
+- Separate build-time and run-time dependencies
+- Improve security and performance
+
+Example:
+```
+FROM golang:1.21 as builder
+WORKDIR /app
+COPY . .
+RUN go build -o myapp
+
+FROM alpine:latest
+COPY --from=builder /app/myapp /myapp
+ENTRYPOINT ["/myapp"]
+```
+## 4. What is a distroless image?
+Answer:
+Distroless images do not include a package manager or OS shell, only the application and its runtime libraries.
+
+Benefits:
+- Very small attack surface
+- Smaller image size
+- Ideal for production environments
+- No shell access = more secure
+
+Example:
+```
+FROM gcr.io/distroless/static
+COPY myapp /
+CMD ["/myapp"]
+```
+## 5. One production issue you faced with Docker and how you tackled it?
+Answer:
+In production, one concern we had was that attackers could exploit containers if they got access to a running shell. Traditional base images like ubuntu or alpine include utilities like bash, sh, wget, and curl, which can be misused.
+To prevent this, we proactively switched to distroless images. These images don’t have a shell or package manager, so even if someone breaks into the container, there’s nothing they can run or download — it’s effectively a black box.
+This eliminated a large class of runtime vulnerabilities, and since distroless images are minimal, it also reduced our image size and attack surface.
+As a result, our containers were more secure by design, and we avoided issues that typically arise from using bloated or exposed base images.
+
+## 6. How to find distroless images?
+Answer:
+Distroless images are maintained by Google at:
+[🔗](https://github.com/GoogleContainerTools/distroless)
