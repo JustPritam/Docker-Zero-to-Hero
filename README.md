@@ -16,6 +16,7 @@ You can watch the video version of this repo on my youtube playlist. -> https://
   - [Verify Docker Installation](#docker-is-installed-up-and-running-)
 - [Run Your First Container](#run-your-first-docker-container)
 - [Push to Docker Hub](#push-the-image-to-dockerhub-and-share-it-with-the-world)
+- [Bind mounts and docker volume](#bind-mounts-and-docker-volume)
 - [Interview Questions](#interview-questions)
 
 ## What is a container ?
@@ -373,6 +374,8 @@ latest: digest: sha256:6e49841ad9e720a7baedcd41f9b666fcd7b583151d0763fe78101bb82
 ```
 
 ### You must be feeling like a champ already 
+
+## Bind mounts and docker volume
 
 # INTERVIEW QUESTIONS
 
